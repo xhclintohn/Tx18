@@ -1,0 +1,16 @@
+{
+  "name": "Tx18",
+  "description": "",
+  "repository": "https://github.com/xhclintohn/Tx18",
+  "env": {
+    "ANIMATION": {
+      "description": "Set to true or false to enable or disable rose rotation",
+      "value": "true"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
