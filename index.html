@@ -15,81 +15,88 @@ display:flex;
 justify-content:center;
 align-items:center;
 min-height:100vh;
-background:#030303;
+background:#020202;
 overflow:hidden;
+perspective:1200px;
 }
 .rose{
-width:min(70vw,90vh);
-height:min(70vw,90vh);
+width:min(65vw,85vh);
+height:min(65vw,85vh);
+transform-style:preserve-3d;
 transform-origin:center center;
 }
 .spin{
-animation:spin 14s linear infinite;
+animation:spin 16s linear infinite;
 }
 @keyframes spin{
-from{transform:rotate(0deg)}
-to{transform:rotate(-360deg)}
+from{transform:rotateY(0deg)}
+to{transform:rotateY(360deg)}
 }
 </style>
 </head>
 <body>
-<svg class="rose" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+<svg class="rose" viewBox="0 0 320 460" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <linearGradient id="stemG" x1="0%" y1="0%" x2="100%" y2="0%">
-<stop offset="0%" stop-color="#1a4d2e"/>
-<stop offset="40%" stop-color="#2d6a4f"/>
-<stop offset="100%" stop-color="#1b4332"/>
+<stop offset="0%" stop-color="#14532d"/>
+<stop offset="50%" stop-color="#166534"/>
+<stop offset="100%" stop-color="#14532d"/>
 </linearGradient>
-<radialGradient id="petalDeep" cx="40%" cy="30%" r="70%">
-<stop offset="0%" stop-color="#ff6b8a"/>
-<stop offset="45%" stop-color="#e63950"/>
-<stop offset="100%" stop-color="#9b2226"/>
+<radialGradient id="pDeep" cx="35%" cy="25%" r="75%">
+<stop offset="0%" stop-color="#fb7185"/>
+<stop offset="40%" stop-color="#e11d48"/>
+<stop offset="100%" stop-color="#9f1239"/>
 </radialGradient>
-<radialGradient id="petalMid" cx="50%" cy="35%" r="65%">
-<stop offset="0%" stop-color="#ff8fa3"/>
-<stop offset="50%" stop-color="#ff4d6d"/>
-<stop offset="100%" stop-color="#c9184a"/>
+<radialGradient id="pMid" cx="45%" cy="30%" r="70%">
+<stop offset="0%" stop-color="#fda4af"/>
+<stop offset="45%" stop-color="#f43f5e"/>
+<stop offset="100%" stop-color="#be123c"/>
 </radialGradient>
-<radialGradient id="petalLight" cx="55%" cy="40%" r="60%">
-<stop offset="0%" stop-color="#ffb3c1"/>
-<stop offset="40%" stop-color="#ff758f"/>
-<stop offset="100%" stop-color="#e63950"/>
+<radialGradient id="pLight" cx="50%" cy="35%" r="65%">
+<stop offset="0%" stop-color="#fecdd3"/>
+<stop offset="40%" stop-color="#fb7185"/>
+<stop offset="100%" stop-color="#e11d48"/>
 </radialGradient>
-<radialGradient id="centerG" cx="50%" cy="50%" r="50%">
-<stop offset="0%" stop-color="#ffe5ec"/>
-<stop offset="60%" stop-color="#ff8fa3"/>
-<stop offset="100%" stop-color="#c9184a"/>
+<radialGradient id="pInner" cx="50%" cy="40%" r="55%">
+<stop offset="0%" stop-color="#fff1f2"/>
+<stop offset="50%" stop-color="#fda4af"/>
+<stop offset="100%" stop-color="#f43f5e"/>
 </radialGradient>
 <linearGradient id="leafG" x1="0%" y1="0%" x2="100%" y2="100%">
-<stop offset="0%" stop-color="#40916c"/>
-<stop offset="100%" stop-color="#1b4332"/>
+<stop offset="0%" stop-color="#22c55e"/>
+<stop offset="100%" stop-color="#14532d"/>
 </linearGradient>
-<filter id="depth">
-<feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="b"/>
-<feOffset in="b" dx="1.5" dy="2" result="o"/>
+<filter id="softShadow">
+<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+<feOffset in="blur" dx="2" dy="3" result="offsetBlur"/>
+<feComponentTransfer>
+<feFuncA type="linear" slope="0.35"/>
+</feComponentTransfer>
 <feMerge>
-<feMergeNode in="o"/>
+<feMergeNode/>
 <feMergeNode in="SourceGraphic"/>
 </feMerge>
 </filter>
 </defs>
-<g transform="translate(150,380)">
-<path d="M-6,0 C-8,-40 -5,-90 0,-140 C5,-90 8,-40 6,0 Z" fill="url(#stemG)"/>
-<path d="M-4,-50 Q-35,-70 -45,-45 Q-20,-40 -4,-50" fill="url(#leafG)" opacity="0.95"/>
-<path d="M4,-80 Q40,-100 48,-70 Q20,-65 4,-80" fill="url(#leafG)" opacity="0.9"/>
-<path d="M-3,-110 Q-30,-125 -28,-95 Q-10,-100 -3,-110" fill="url(#leafG)" opacity="0.85"/>
+<g transform="translate(160,400)">
+<path d="M-7,0 C-9,-50 -6,-110 0,-170 C6,-110 9,-50 7,0 Z" fill="url(#stemG)"/>
+<path d="M-5,-60 Q-42,-85 -55,-50 Q-25,-45 -5,-60" fill="url(#leafG)" opacity="0.95"/>
+<path d="M5,-95 Q48,-120 58,-80 Q25,-75 5,-95" fill="url(#leafG)" opacity="0.9"/>
+<path d="M-4,-130 Q-38,-150 -35,-110 Q-12,-115 -4,-130" fill="url(#leafG)" opacity="0.88"/>
+<path d="M3,-40 Q-18,-55 -22,-35 Q-5,-30 3,-40" fill="#166534" opacity="0.7"/>
 </g>
-<g transform="translate(150,160)" filter="url(#depth)">
-<path d="M-55,40 C-70,10 -65,-30 -40,-55 C-20,-70 10,-65 30,-45 C45,-25 50,5 35,30 C20,50 -20,55 -55,40" fill="url(#petalDeep)" opacity="0.95"/>
-<path d="M55,35 C70,5 60,-35 30,-55 C5,-70 -25,-60 -40,-35 C-50,-15 -45,15 -25,35 C-5,50 30,50 55,35" fill="url(#petalDeep)" opacity="0.92"/>
-<path d="M-45,25 C-60,-5 -50,-40 -25,-55 C0,-65 25,-55 40,-30 C50,-10 45,20 25,35 C5,48 -20,45 -45,25" fill="url(#petalMid)"/>
-<path d="M40,20 C55,-10 45,-45 15,-55 C-10,-60 -35,-45 -40,-20 C-42,0 -30,25 -10,35 C10,45 30,40 40,20" fill="url(#petalMid)" opacity="0.95"/>
-<path d="M-30,15 C-45,-15 -35,-45 -10,-55 C15,-60 35,-45 40,-20 C42,0 30,25 10,35 C-10,42 -20,35 -30,15" fill="url(#petalLight)"/>
-<path d="M25,10 C40,-20 30,-50 5,-55 C-20,-55 -35,-35 -30,-10 C-25,10 -5,30 15,32 C30,30 20,20 25,10" fill="url(#petalLight)" opacity="0.98"/>
-<path d="M-15,5 C-30,-20 -20,-45 5,-50 C25,-48 35,-25 30,0 C25,20 5,30 -10,25 C-20,20 -10,15 -15,5" fill="url(#petalMid)"/>
-<path d="M10,0 C22,-25 15,-45 -5,-48 C-22,-45 -28,-25 -20,0 C-12,18 5,22 15,15 C20,10 8,8 10,0" fill="url(#petalLight)"/>
-<path d="M-5,-5 C-15,-25 -8,-40 5,-42 C18,-38 20,-20 12,0 C5,12 -5,12 -8,5 C-10,0 -2,-2 -5,-5" fill="url(#centerG)"/>
-<ellipse cx="0" cy="-8" rx="8" ry="6" fill="#ffe5ec" opacity="0.7"/>
+<g transform="translate(160,155)" filter="url(#softShadow)">
+<path d="M-70,50 C-90,15 -85,-35 -55,-70 C-30,-90 15,-85 45,-55 C65,-30 70,10 50,40 C30,65 -25,70 -70,50" fill="url(#pDeep)" opacity="0.97"/>
+<path d="M70,45 C90,10 80,-40 45,-70 C15,-90 -30,-80 -50,-45 C-65,-20 -55,20 -30,45 C-5,65 40,65 70,45" fill="url(#pDeep)" opacity="0.94"/>
+<path d="M-55,35 C-75,0 -65,-45 -35,-70 C-5,-85 30,-75 50,-45 C65,-20 60,20 35,40 C10,58 -25,55 -55,35" fill="url(#pMid)"/>
+<path d="M50,30 C70,-5 55,-50 20,-70 C-10,-80 -40,-60 -50,-30 C-55,-5 -40,25 -15,40 C10,55 35,50 50,30" fill="url(#pMid)" opacity="0.96"/>
+<path d="M-40,20 C-60,-15 -50,-50 -20,-70 C10,-80 40,-60 50,-30 C55,-5 40,25 15,40 C-10,52 -25,45 -40,20" fill="url(#pLight)"/>
+<path d="M35,15 C55,-20 40,-55 10,-70 C-20,-75 -45,-50 -45,-20 C-42,5 -20,30 5,38 C25,42 30,30 35,15" fill="url(#pLight)" opacity="0.97"/>
+<path d="M-25,10 C-42,-20 -30,-50 0,-65 C25,-70 45,-50 45,-20 C42,5 25,30 0,38 C-15,40 -15,25 -25,10" fill="url(#pMid)"/>
+<path d="M20,5 C35,-25 25,-50 0,-60 C-25,-55 -35,-30 -25,0 C-15,25 5,32 20,25 C28,18 12,12 20,5" fill="url(#pLight)"/>
+<path d="M-10,0 C-22,-22 -12,-45 5,-52 C22,-48 28,-25 18,0 C10,18 -5,20 -12,12 C-15,5 -5,5 -10,0" fill="url(#pInner)"/>
+<ellipse cx="2" cy="-12" rx="10" ry="8" fill="#fff1f2" opacity="0.75"/>
+<ellipse cx="0" cy="-8" rx="5" ry="4" fill="#fda4af" opacity="0.6"/>
 </g>
 </svg>
 <script>
